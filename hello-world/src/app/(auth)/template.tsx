@@ -28,10 +28,11 @@ export default function AuthLayout({
         />
       </div>
       <nav>
-        {navLinks.map((link) => {
+        {navLinks.map((link, index) => {
           const isActive = pathname.startsWith(link.href);
           return (
             <Link
+              key={index}
               href={link.href}
               className={isActive ? "font-bold mr-4" : "text-blue-500 mr-4"}
             >
