@@ -1,3 +1,4 @@
+import { redirect } from "next/navigation";
 import { comments } from "../data";
 
 export async function GET(
@@ -8,6 +9,11 @@ export async function GET(
     params: { id: string };
   }
 ) {
+  // redirect to /comments if ID is not present in the comments array
+  // assuming the IDs are in squential order for simplicity
+  if (parseInt(params.id) > comments.length) {
+    redirect("/comments");
+  }
   const comment = comments.find((c) => c.id === parseInt(params.id));
 
   return Response.json(comment);
